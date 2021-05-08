@@ -11,7 +11,7 @@ class AddImage extends React.Component {
     }
     suggest = (event) => {
         event.preventDefault();
-        axios.get(`http://localhost:8080/label?url=${this.state.url}`).then(data => {
+        axios.get(`https://fast-forest-10902.herokuapp.com/label?url=${this.state.url}`).then(data => {
             this.setState({suggestions: data.data, post_submission: false})
         }).catch(err => {
             this.setState({suggestions: ['Failed to get suggested labels, please enter manually'], post_submission: false})
@@ -21,7 +21,7 @@ class AddImage extends React.Component {
     submit = (event) => {
         event.preventDefault();
         this.setState({ url: '',suggestions : [], final_suggestion: '' });
-        axios.post('http://localhost:8080/update', {tag:this.state.final_suggestion, url:this.state.url}).then(data => {
+        axios.post('https://fast-forest-10902.herokuapp.com/update', {tag:this.state.final_suggestion, url:this.state.url}).then(data => {
             this.setState({post_submission:true, success:true})
         }).catch(err => {
             this.setState({post_submission:true,success:false})
