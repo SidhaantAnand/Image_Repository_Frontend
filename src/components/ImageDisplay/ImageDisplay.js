@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer,useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './ImageDisplay.css';
-import { fetchPichers } from '../helpers/fetch_pitchers.js'
+import { fetchPichers } from '../../helpers/fetch_pitchers.js'
 import Alert from 'react-bootstrap/Alert';
 
 
@@ -14,8 +14,8 @@ const  ImgDisplay = (props) => {
     useEffect(() => {
         fetchPichers(props.search)
           .then(images => {
-            if(images.data.data.length == 0) {
-              setImgState({ images : [], message:'No such tags in the database, please add images for this tag',success: 0 })
+            if(images.data.data.length === 0) {
+              setImgState({ images : [], message:`No such tags in the database, please add images for ${images.data.message}`,success: 0 })
             }
             else {
               setImgState({ images : images.data.data[0].urls, message:images.data.message,success: 1 })
@@ -31,14 +31,14 @@ const  ImgDisplay = (props) => {
             }
             
           })
-      }, [ setImgState ])
+      }, [ setImgState,props.search ])
       
-      if(img_state.success == 1) {
+      if(img_state.success === 1) {
         return (
           <div>
               <br>
               </br>
-              <div class="title">
+              <div className="title">
                 <Alert  variant="success">
                 <Alert.Heading>Success</Alert.Heading>
                 <p>
@@ -48,7 +48,7 @@ const  ImgDisplay = (props) => {
               </div>
             <div id='images' className="container">
               <div className="row">
-              <div class="column">
+              <div className="column">
                   {img_state.images.slice(0,Math.ceil(img_state.images.length/2)).map((image_url,i) => {
                     return (
                       <div key={i} className="card">
@@ -62,7 +62,7 @@ const  ImgDisplay = (props) => {
                     )
                   })}
               </div>
-              <div class="column">
+              <div className="column">
                 {img_state.images.slice(Math.ceil(img_state.images.length/2),img_state.images.length).map((image_url,i) => {
                   return (
                     <div key={i} className="card">
@@ -82,9 +82,9 @@ const  ImgDisplay = (props) => {
         );
       }
 
-      else if(img_state.success == 0) {
+      else if(img_state.success === 0) {
         return (
-          <div class="title">
+          <div className="title">
             <Alert  variant="danger">
             <Alert.Heading>Failure!</Alert.Heading>
             <p>

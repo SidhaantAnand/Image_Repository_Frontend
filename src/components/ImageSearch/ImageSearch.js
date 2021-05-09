@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ImageDisplay from './ImageDisplay.js';
+import ImageDisplay from '../ImageDisplay/ImageDisplay.js';
 
 class ImageSearch extends React.Component {
     constructor(props) {
@@ -19,12 +19,12 @@ class ImageSearch extends React.Component {
       }
 
     render() {
-      if(this.state.submitted == false) {
+      if(this.state.submitted === false) {
         return (
             <div>
+                <h3> Image Search </h3>
                 <Form onSubmit={this.mySubmitHandler}>
                 <Form.Group controlId="formBasicEmail">
-                <Form.Label>Image Search</Form.Label>
                 <Form.Control type="text" placeholder="Enter search query" onChange={this.myChangeHandler}/>
                 <Form.Text className="text-muted">
                     Smart search on the animal you want to view pictures of
@@ -41,9 +41,9 @@ class ImageSearch extends React.Component {
       else {
           return (
             <div>
+                <h3> Image Search </h3>
                 <Form onSubmit={this.mySubmitHandler}>
                 <Form.Group controlId="formBasicEmail">
-                <Form.Label>Image Search</Form.Label>
                 <Form.Control type="text" placeholder={this.state.search} onChange={this.myChangeHandler}/>
                 <Form.Text className="text-muted">
                     Smart search on the animal you want to view pictures of

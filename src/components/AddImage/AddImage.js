@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import './AddImage.css';
 
 class AddImage extends React.Component {
     constructor(props) {
@@ -46,12 +47,12 @@ class AddImage extends React.Component {
         if(this.state.suggestions.length === 0 && !this.state.post_submission) {
             return (
                 <div>
-                     <h1> Add image URL and let AI suggest you tags or suggest your own tags</h1>
+                     <h3> Add Image to Gallery </h3>
                      <Form onSubmit={this.suggest}>
                     <Form.Group>
                     <Form.Control type="text" placeholder="Enter image url" onChange={this.urlChange}/>
                     <Form.Text className="text-muted">
-                        Add the URl you would like to add to the Image gallery
+                    `     Add image URL and let AI suggest you tags or suggest your own tags
                     </Form.Text>
                     </Form.Group>
                     <Button variant="primary" type="submit">
@@ -65,14 +66,14 @@ class AddImage extends React.Component {
         else if(!this.state.post_submission) {
             return (
                 <div>
-                     <h1> Add image URL and let AI suggest you tags or suggest your own tags</h1>
+                     <h3> Add Image to Gallery </h3>
                      <Form onSubmit={this.submit}>
                         <Form.Group>
                         <Form.Control type="text" placeholder={this.url} readOnly/>
                         </Form.Group>
 
                         <Form.Group>
-                        <Form.Label>suggestions Tags</Form.Label>
+                        <Form.Label>Suggested Tags</Form.Label>
                         <Form.Control type="text" placeholder={this.state.suggestions.join(" , ")} readOnly/>
                         </Form.Group>
 
